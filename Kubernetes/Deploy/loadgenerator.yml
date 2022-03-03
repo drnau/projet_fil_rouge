@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadgenerator
+  namespace: test
+  labels:
+    app: loadgenerator
+spec:
+  selector:
+    matchLabels:
+      app: loadgenerator
+  template:
+    metadata:
+      labels:
+        app: loadgenerator
+    spec:
+      containers:
+        - name: loadgenerator
+          image: drnau/load_generator
+          env:
+            - name: FRONTEND_ADDR
+              value: frontend:80
